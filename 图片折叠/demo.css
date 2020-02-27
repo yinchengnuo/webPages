@@ -1,0 +1,79 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+body{
+    width:100%;
+    height:700px;
+    background:linear-gradient(to left top ,#f5A1D5 0%,#cdd3e9);
+}
+.cards-stack{
+    width:600px;
+    margin:100px auto;
+    position:relative;
+    cursor: pointer;
+}
+.stack{
+    position:absolute;
+    left:0;
+    transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.22);
+}
+
+.card{
+    position: absolute;
+    height:200px;
+    width:200px;
+    border-radius:10px;
+    /* border:1px solid black;   */
+    background-color:#fff;
+    left:0;
+    top:0;
+    box-shadow: 1px 2px 2px 0 #aaa;
+    padding:5px;  
+    transition: all 0.4s cubic-bezier(0.63, 0.15, 0.03, 1.22);
+    transition-delay: 0.4s;    
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+}
+.card .con{
+    padding:5px 10px;
+    text-align: center;
+    line-height:40px; 
+    height:40px;
+    font-size:20px;
+}
+
+.stack .card1{
+    z-index: 10;
+    transform: rotateZ(-2deg);
+}
+.stack .card2{
+    z-index: 9;
+    transform: rotateZ(-7deg);
+}
+.stack .card3{
+    z-index: 8;
+    transform: rotateZ(5deg);
+}
+.transition .stack1 {
+    left: 0px;
+  }
+.transition .stack2 {
+    left: 220px;
+  }
+.transition .stack3 {
+    left: 440px;
+}
+.transition .stack ul .card {
+    transform: rotateZ(0deg);
+  }
+.transition .stack ul .card.card1 {
+    top: 440px;
+  }
+.transition .stack ul .card.card2 {
+    top: 220px;
+  }

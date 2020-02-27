@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #080808;
+    color: white;
+    text-align: center;
+}
+.container{
+    width: 300px;
+    height: 300px;
+    margin: 50px auto 100px;
+    perspective: 1000px;
+}
+
+.container .cube{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.container .cube img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+}
+.img1{
+    transform: rotateX(0deg) translateZ(150px);
+}
+.img2{
+    transform: rotateX(-180deg) translateZ(150px)
+}
+.img3{
+    transform: rotateY(90deg) translateZ(150px)
+}
+.img4{
+    transform: rotateY(-90deg) translateZ(150px)
+}
+.img5{
+    transform: rotateX(90deg) translateZ(150px)
+}
+.img6{
+    transform: rotateX(-90deg) translateZ(150px)
+}
+.cube.init{
+    transform:  translateZ(-150px) rotateX(-15deg) rotateY(18deg);
+}
+
+h2{
+    margin-bottom: 50px;
+}
+
+.image-button{
+    display: grid;
+    grid-template-columns: 105px 105px 105px;
+    grid-template-rows: 85px 85px;
+    justify-content: center;
+    grid-gap: 15px;
+}
+
+.image-button input{
+    width: 105px;
+    height: 85px;
+    outline: none;
+    border:2px solid white;
+}
+.image-button input:focus{
+    border:2px solid #e70;
+}
+
+.cube.show-image-1{
+    transform:  translateZ(-150px);
+}
+.cube.show-image-2{
+    transform:  translateZ(-150px) rotateX(-180deg) ;
+}
+.cube.show-image-3{
+    transform:  translateZ(-150px) rotateY(-90deg) ;
+}
+.cube.show-image-4{
+    transform:  translateZ(-150px) rotateY(90deg) ;
+}
+.cube.show-image-5{
+    transform:  translateZ(-150px) rotateX(-90deg) ;
+}
+.cube.show-image-6{
+    transform:  translateZ(-150px) rotateX(90deg) ;
+}

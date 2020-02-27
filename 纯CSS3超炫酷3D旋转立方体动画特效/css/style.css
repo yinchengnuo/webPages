@@ -1,0 +1,208 @@
+/*简单清除默认样式*/
+*{
+    margin: 0 auto;
+    padding: 0;
+}
+
+/*动画关键帧，翻滚吧！牛宝宝*/
+@keyframes move{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg) ;
+    }
+    100%{
+        transform:rotateX(720deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+/*来个渐变的背景色*/
+html{
+    background:linear-gradient(#29f9f0 0%, #000 80%);/*用于创建一个表示两种或多种颜色线性渐变的图片。*/
+    height:100%;
+}
+
+div.wrap{
+    margin-top: 200px;    /*上外边距设置*/
+    width: 200px;         /*给他一个宽度*/
+    perspective: 1000px;  /*景深设置，视图距元素的距离  相当于摄像机*/
+}
+
+.wrap>div.cube{
+    width: 200px;                                               /*box设置宽度200像素*/
+    height: 200px;                                              /*设置高度200像素*/
+    position: relative;                                         /*开启相对定位，好让里面的元素开启定位时不会高度塌陷*/
+    color: #ff92ff;                                             /*字体的颜色*/
+    font-size: 36px;                                            /*字体大小*/
+    font-weight: 100;                                           /*字体细小*/
+    text-align: center;                                         /*文本字体左右居中*/
+    line-height: 200px;                                         /*行高设置，这样文本就在比box中是上下居中*/
+    
+    
+    transform-style: preserve-3d ;                              /*开启这个，表示所有元素在3D平面呈现*/
+    transform: rotateX(-50deg) rotateY(-50deg) rotateZ(0deg);   /*一开始的角度，视觉上看一下*/
+    animation: move 8s infinite linear;                         /*启动动画的名字、时长、无限循环、匀速播放*/
+}
+
+/*大的正方体的设置*/
+.cube>div{
+    width: 100%;                              /*设置的宽度和父级一样*/
+    height: 100%;                             /*设置的高度一样*/
+    border: 10px solid #66daff;               /*边框设置*/
+    border-radius: 20px;                      /*设置一下圆角*/
+    position: absolute;                       /*开启绝对定位，这样就全部叠在一起了*/
+    background-color: rgba(51,51,51,.3);      /*来个背景色，30%的透明度*/
+    transition:transform 0.3s ease-in;        /*过度变形的时间设置和快慢设置*/
+}
+
+/*设置大的正方体的六个面的位置*/
+.cube div.out-front{
+    transform: translateZ(100px);                   /*设置前面的那一面的Z轴往前移*/
+}
+.cube div.out-back{
+    transform: translateZ(-100px) rotateY(180deg);  /*设置后面的那一面的Z轴往后移，Y轴转一下。使得的背面的那一面是面向背面的*/
+}
+.cube div.out-left{
+    transform: translateX(-100px) rotateY(-90deg);  /*设置左边的那一面在X轴上退一些，向左转*/
+}
+.cube div.out-right{
+    transform: translateX(100px) rotateY(90deg);    /*设置右边的那一面在X轴上进一些，向右转*/
+}
+.cube div.out-top{
+    transform: translateY(-100px) rotateX(90deg);   /*设置上边的那一面在Y轴上去一些，向后翻转*/
+}
+.cube div.out-bottom{
+    transform: translateY(100px) rotateX(-90deg);   /*设置下边的那一面在X轴下去一些，向前翻*/
+}
+
+/*小的正方体的设置*/
+.cube>span{
+    display: block;                      /*先转变为块级元素*/
+    width: 90px;                         /*设置宽度，因为是小的正方体*/
+    height: 90px;                        /*设置高度*/
+    background-color: #ffe7f9;           /*背景色*/
+    position:absolute;                   /*开启绝对定位*/
+    top:50px;                            /*因为高度是100，是原来的一半。要居中就上下都一样的50*/
+    left:50px;                           /*同理，因为宽度是100，是原来的一半。要居中就左右都一样的50*/
+    border: 5px solid #424242;           /*边框设置*/
+    opacity: 0.9;                        /*透明度设置成90%*/
+    /*backface-visibility: hidden;*/     /*设置了透明度可以设置隐藏背面*/
+    border-radius: 30%;                  /*圆角*/
+}
+
+/*设置小的正方体的六个面的位置*/
+.cube span.in-front{
+    transform: translateZ(50px);                        /*设置前面的那一面的Z轴往前移*/
+}
+.cube span.in-back{
+    transform: translateZ(-50px) rotateY(180deg);       /*设置后面的那一面的Z轴往后移，Y轴转一下。使得的背面的那一面是面向背面的*/
+}
+.cube span.in-left{
+    transform: translateX(-50px) rotateY(-90deg);       /*设置左边的那一面在X轴上退一些，向左转*/
+}
+.cube span.in-right{
+    transform: translateX(50px) rotateY(90deg);         /*设置右边的那一面在X轴上进一些，向右转*/
+}
+.cube span.in-top{
+    transform: translateY(-50px) rotateX(90deg);        /*设置上边的那一面在Y轴上去一些，向后翻转*/
+}
+.cube span.in-bottom{
+    transform: translateY(50px) rotateX(-90deg);        /*设置下边的那一面在X轴下去一些，向前翻*/
+}
+
+/*当鼠标滑过这个div的时候。过渡变化下面的事件*/
+.wrap:hover .cube div.out-front{
+    transform: translateZ(200px);                   /*当鼠标滑过，前面就往前凸*/
+}
+.wrap:hover .cube div.out-back{
+    transform: translateZ(-200px) rotateY(180deg);  /*当鼠标滑过，前面就往后跑，加了旋转是因为一开始是平面的，不加会变会原样*/
+}
+.wrap:hover .cube div.out-left{
+    transform: translateX(-200px) rotateY(-90deg);  /*当鼠标滑过，左面就往左飞*/
+}
+.wrap:hover .cube div.out-right{
+    transform: translateX(200px) rotateY(90deg);    /*当鼠标滑过，右面就往右进*/
+}
+.wrap:hover .cube div.out-top{
+    transform: translateY(-200px) rotateX(90deg);   /*当鼠标滑过，上面就往上冒*/
+}
+.wrap:hover .cube div.out-bottom{
+    transform: translateY(200px) rotateX(-90deg);   /*当鼠标滑过，下面就往下弹*/
+}
+
+/*先设置全部的点的大小和颜色*/
+span.points {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #bb9aff;
+}
+
+/*这是1点的设置，居中布局,一个点设置大一些^-^*/
+span.in-front{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.in-front>span{
+    width: 40px;
+    height: 40px;
+}
+
+/*这是2点的设置，in-left斜对角排横纵两排,点的大小设置大一些^-^*/
+span.in-left{
+    display: flex;
+    justify-content: center;
+}
+span.in-left>.pitL2{
+    align-self: flex-end;
+}
+.in-left>span,.in-right>span{
+    width: 25px;                 /*2点和4点都是排横纵两排，所有设置一样大小*/
+    height: 25px;
+    margin: 10px;
+}
+
+/*这是3点的设置，in-back斜对角排横纵三排^-^*/
+span.in-back{
+    display: flex;
+}
+span.in-back>.pitB2{
+    align-self: center;
+}
+span.in-back>.pitB3{
+    align-self: flex-end;
+}
+
+/*这是4点的设置，in-right斜对角排横纵两排,点的大小设置大一些^-^*/
+span.in-right{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/*这是5点的设置，in-top斜对角排横纵三排^-^*/
+span.in-top{
+    display: flex;
+}
+span.in-top>.pitT1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+span.in-top>.pitT2{
+    display: flex;
+    align-items: center;
+}
+span.in-top>.pitT3{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/*这是6点的设置，in-bottom横纵两排^-^*/
+span.in-bottom{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+}

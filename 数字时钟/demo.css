@@ -1,0 +1,43 @@
+*{
+    margin:0;
+}
+body{
+    background-color:#0e141b;
+    overflow: hidden;
+}
+.wrapper{
+    width:100%;
+    text-align:center;        
+}
+.column,
+.coln{
+    font-weight: 300;    
+    color:rgba(224, 230,235,0.89);    
+    font-size:86px;
+    line-height: 86px;
+    display:inline-block;
+    vertical-align: top;
+}
+.column{
+    transition: transform 300ms ease-in;
+}
+.coln{
+    transform:translateY(calc(50vh - 43px));
+}
+.column div{
+    transition:opacity 500ms,text-shadow 400ms;
+    opacity:0.25;
+}
+.column .visible{
+    opacity:1;
+    text-shadow:1px 1px 30px #336699;
+}
+.column .close{
+    opacity:0.35;
+}
+.column .far{
+    opacity:0.15;
+}
+.column .distant{
+    opacity:0.1;
+}

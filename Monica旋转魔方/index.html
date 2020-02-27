@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Monica旋转方块</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="cube init">
+            <img src="img/1.jpg" alt="" class="img1">
+            <img src="img/2.jpg" alt="" class="img2">
+            <img src="img/3.jpg" alt="" class="img3">
+            <img src="img/4.png" alt="" class="img4">
+            <img src="img/5.png" alt="" class="img5">
+            <img src="img/6.png" alt="" class="img6">
+        </div>
+    </div>
+    <h2>请点击下面的图片按钮</h2>
+    <div class="image-button">
+        <input type="image" src="img/1.jpg" class="show-image-1">
+        <input type="image" src="img/2.jpg" class="show-image-2">
+        <input type="image" src="img/3.jpg" class="show-image-3">
+        <input type="image" src="img/4.png" class="show-image-4">
+        <input type="image" src="img/5.png" class="show-image-5">
+        <input type="image" src="img/6.png" class="show-image-6">
+    </div>
+    <script>
+        (function () {
+            var btn_images = document.getElementsByTagName('input');
+            var cubeNode = document.getElementsByClassName('cube')[0];
+            var cList = cubeNode.classList;
+            var currentClass = cList[1];
+
+            for (var i = 0; i < btn_images.length; i++) {
+                btn_images[i].addEventListener('click',clickFn)
+            }
+            function clickFn(e){
+                console.log(e.target.className);
+                var targetName = e.target.className;
+                if(targetName!=currentClass){
+                    cList.replace(currentClass,targetName);
+                // console.log(cList);
+                currentClass = targetName;
+                }
+               
+
+            }
+
+
+        })()
+
+    </script>
+</body>
+
+</html>

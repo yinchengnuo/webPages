@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>旋转方块</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+        <div class="container">
+            <ul class="cube init">
+                <li class="img1"><img src="img/1.jpg"  alt=""></li>
+                <li class="img2"><img src="img/2.jpg"  alt=""></li>
+                <li class="img3"><img src="img/3.jpg"   alt=""></li>
+                <li class="img4"><img src="img/4.jpg"  alt=""></li>
+                <li class="img5"><img src="img/5.jpg"  alt=""></li>
+                <li class="img6"><img src="img/6.png"  alt=""></li>
+            </ul>
+        </div>
+
+        <h2>请点击下列图片方块</h2>
+        <ul class="btnList">
+            <li><input type="image" src="img/1.jpg" class="show-image-1"></li>
+            <li><input type="image" src="img/2.jpg" class="show-image-2"></li>
+            <li><input type="image" src="img/3.jpg" class="show-image-3"></li>
+            <li><input type="image" src="img/4.jpg" class="show-image-4"></li>
+            <li><input type="image" src="img/5.jpg" class="show-image-5"></li>
+            <li><input type="image" src="img/6.png" class="show-image-6"></li>
+        </ul>
+       <script>
+           (function(){
+               var btn_images = document.getElementsByTagName('input');
+               var cubeNode= document.getElementsByClassName('cube')[0];
+               var ClassList = cubeNode.classList;
+               var currentClass = ClassList[1];
+              
+
+               for(var i = 0,len = btn_images.length;i<len;i++){
+                  btn_images[i].addEventListener('click',clickFn)
+                  }
+                  
+            function clickFn(e){
+                var target_ClassName = e.target.className;
+                console.log(target_ClassName);
+                if(target_ClassName!=currentClass){
+                    ClassList.replace(currentClass,target_ClassName);
+                    currentClass = target_ClassName;
+                   console.log(cubeNode.classList)
+                }
+
+            }
+
+
+
+
+           })()
+        
+       
+       
+       </script>
+</body>
+</html>

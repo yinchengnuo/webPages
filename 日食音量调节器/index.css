@@ -1,0 +1,53 @@
+*{
+    margin:0;
+    padding:0;
+}
+html,body{
+    width:100%;
+    height:100%;
+    /* 饱和度  亮度 */
+    background: hsl(194,66%,49%);
+}
+
+.wrapper{
+    position: relative;
+    width:70%;
+    height:100%;
+    margin:0 auto;
+}
+.title{
+    position:absolute;
+    top:100px;
+    color:#fff;
+    font-size:20px;
+    font-weight:bolder;
+}
+
+.circle{
+    position: absolute;
+    width:20%;
+    padding-top:20%;
+    border-radius:50%;
+    left:30%;
+    top:30%;
+}
+.sun{
+    background-color: #ffff77;
+    box-shadow: 0 0 50px #ffff77;
+}
+
+.moon{
+    /* background-color:red; */
+    left:52%;
+    cursor: pointer;
+    box-shadow: inset 5px 5px 50px rgba(255,255,119,0.3);
+}
+.per{
+    position: absolute;
+    top:20%;
+    width:100%;
+    height:40px;
+    text-align: center;
+    color:#fff;
+    font-weight:bold;
+}

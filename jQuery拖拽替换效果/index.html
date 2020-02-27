@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    #box {
+        margin: auto;
+        width: 490px;
+        height: 340px;
+        border: 1px solid #000000;
+        position: relative;
+    }
+    
+    div.item {
+        width: 150px;
+        height: 100px;
+        border-radius: 5px;
+        margin: 5px;
+        float: left;
+        background: goldenrod;
+        border: 1px solid lightgray;
+        z-index: 1;
+        text-align: center;
+        font-size: 30px;
+        line-height: 100px;
+        cursor: move;
+    }
+    
+    div.moving {
+        border: 1px dashed gray;
+        background: white;
+    }
+    
+    div.draging {
+        width: 150px;
+        height: 100px;
+        position: absolute;
+        background: goldenrod;
+        box-shadow: 0 0 2px 2px #555;
+        border-radius: 5px;
+        z-index: 500;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="item"><img src="img/9.png" width="150" height="100"></div>
+        <div class="item"><img src="img/1.png" width="150" height="100"></div>
+        <div class="item"><img src="img/2.png" width="150" height="100"></div>
+        <div class="item"><img src="img/3.png" width="150" height="100"></div>
+        <div class="item"><img src="img/4.png" width="150" height="100"></div>
+        <div class="item"><img src="img/5.png" width="150" height="100"></div>
+        <div class="item"><img src="img/6.png" width="150" height="100"></div>
+        <div class="item"><img src="img/7.png" width="150" height="100"></div>
+        <div class="item"><img src="img/8.png" width="150" height="100"></div>
+    </div>
+   <script src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+    var bstop = true;
+    $('#box div').on('mousedown', function(e) {//当鼠标指针移动到元素上方，并按下鼠标按键时发生的事件
+        if (bstop) {
+            bstop = false;
+            var that = this;//将当前的this对象复制一份到that变量中
+            //this对象在程序中随时会改变，而var that=this之后，that没改变之前仍然是指向当时的this，这样就不会出现找不到原来的对象。
+            var disx = e.offsetX; //获取的拖拽过程的短线的长度（鼠标的位置离盒子边缘的位置）
+            var disy = e.offsetY;
+            var $clone = $(this).clone(); //克隆
+            $clone.addClass('draging').css({ //对克隆的盒子设置类名以及位置
+                left: $(this).position().left,
+                top: $(this).position().top
+            });
+            $('#box').append($clone); //追加到box里面
+            $(this).addClass('moving').html(''); //被克隆的元素添加类移除内容
+            $('#box').on('mousemove', function(e) { //对克隆的盒子进行拖拽，获得鼠标指针在页面中的位置：当鼠标指针在指定的元素中移动时，就会发生 mousemove 事件。
+                $clone.css({
+                    left: e.pageX - $(this).offset().left - disx,//鼠标位置-偏移（位置）-拖拽的长度
+                    top: e.pageY - $(this).offset().top - disy
+                })
+               
+            });
+
+            $clone.on('mouseup', function() {//当在元素上放松鼠标按钮时，会发生 mouseup 事件。
+                $('#box').off('mousemove'); //取消mousemove事件
+                var minIndex = $(that).index(); //最小索引赋初始值，index() 方法返回指定元素相对于其他指定元素的 index 位置。
+                var minValue = 1000; //初始化最小值，用来存储所有盒子的最小值
+                $('#box div').not(':last').each(function() { //不包括克隆的那个盒子
+                    var smalldistance = Math.sqrt(Math.pow($clone.position().left - $(this).position().left, 2) + Math.pow($clone.position().top - $(this).position().top, 2)); //利用勾股定理获取每一个盒子离克隆出来的盒子的距离  Math.sqrt()获取一个值的平方根 Math.pow()一个值的多少词幂
+                    if (smalldistance < minValue) { //比较
+                        minValue = smalldistance; //获取最小值
+                        minIndex = $(this).index(); //获取最小值对应的索引
+                    }
+                });
+                if (minIndex == $(that).index()) { //如果当前最小距离的那个盒子和拖拽的盒子索引相等的话，归位。
+                    $clone.animate($(that).position(), 400, function() {
+                        $(that).removeClass('moving').html($clone.html()); //恢复被克隆盒子的相关样式
+                        $(this).remove(); //移除被克隆的盒子
+                        bstop=true;
+                    });
+                } else {
+                    var $minbox = $('#box div').eq(minIndex); //最小索引的盒子  eq() 方法将匹配元素集缩减值指定 index 上的一个
+                    var $clone2 = $minbox.clone(); //克隆一个最小盒子的副本，添加相关样式
+                    $clone2.addClass('draging').css({
+                        left: $minbox.position().left,
+                        top: $minbox.position().top
+                    })
+                    $('#box').append($clone2); //追加
+                    $minbox.addClass('moving').html('');
+                    $clone.animate($minbox.position(), 400, function() { //克隆的内容运动到最小索引的盒子的位置
+                        $minbox.removeClass('moving').html($clone.html()); //移除相关样式，添加内容
+                        $clone.remove(); //移除克隆的盒子
+                        bstop = true;
+                    });
+                    $clone2.animate($(that).position(), 400, function() {
+                        $(that).removeClass('moving').html($clone2.html());
+                        $clone2.remove();
+                        bstop = true;
+                    });
+                }
+            });
+        }
+        return false;
+    });
+    </script>
+</body>
+
+</html>

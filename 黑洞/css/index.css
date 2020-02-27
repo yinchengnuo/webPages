@@ -1,0 +1,171 @@
+body,h1,h2,h3,h4,p,dl,dt,dd{
+	margin: 0;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+img{
+	border: none;
+}
+html{
+	width: 100%;
+	overflow-x: hidden;
+}
+body{
+	background: #000000;
+	font-family: "微软雅黑";
+	color: #fff;
+	overflow: hidden;
+}
+.clear:after,.center:after{
+	clear: both;
+	content: '';
+	display: block;
+}
+.center{
+	width: 960px;
+	margin: 0 auto;
+}
+.header{
+	text-align: center;
+}
+.header h2{
+	font-size: 36px;
+	font-weight: normal;
+}
+.line{
+	width: 103px;
+	height: 4px;
+	background: #fff;
+	overflow: hidden;
+	margin: 14px auto;
+	transition: 0.5s;
+	transform: scaleX(0);
+}
+.header h3{
+	font-size: 22px;
+	font-weight: normal;
+	color: #d1d1d1;
+}
+
+
+
+/*fifth*/
+#fifth{
+	margin-bottom: 50px;
+}
+#fifth .header{
+	margin: 20px auto 40px auto;
+}
+.fCenter{
+	width: 620px;
+	height: 618px;
+	margin: -618px auto 0 auto;
+	position: relative;
+}
+.fImg{
+	width: 620px;
+	height: 618px;
+	margin: 0 auto;
+	overflow: hidden;
+	transform: scale(1.2);
+	background: url(../img/blackhole.png) center no-repeat;
+	background-size: cover;
+}
+
+
+@keyframes black{
+	30%{
+		transform: scale(1.4) rotate(30deg);
+	}
+	50%{
+		transform: scale(1.6) rotate(50deg);
+	}
+	70%{
+		transform: scale(1.8) rotate(70deg);
+	}
+	90%{
+		transform: scale(2.0) rotate(90deg);
+	}
+	100%{
+		transform: scale(0) rotate(110deg);
+	}
+}
+
+@keyframes blackRoate{
+	0%{
+		transform: rotate(0);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+.fCenter div{
+	transition: 1.2s;
+}
+.fCenter dt{
+	font: 22px/40px "微软雅黑";
+	color: #fff;
+}
+.fCenter dd{
+	font: 14px/22px "微软雅黑";
+	color: #fff;
+}
+.fCenter span{
+	font-size: 40px;
+}
+.fCenter i{
+	font-style: normal;
+	transition: 0.3s;
+}
+.fCenter div:nth-of-type(1){
+	position: absolute;
+	left: 70px;
+	top: 215px;
+}
+.fCenter div:nth-of-type(2){
+	position: absolute;
+	top: 60px;
+	left: 220px;
+}
+.fCenter div:nth-of-type(2) span,.fCenter div:nth-of-type(2) dl{
+	float: left;
+	margin-right: 10px;
+}
+.fCenter div:nth-of-type(3){
+	position: absolute;
+	
+	width: 150px;
+	left: 400px;
+	top: 200px;
+	text-align: right;
+}
+.fCenter div:nth-of-type(4){
+	position: absolute;
+	
+	top: 440px;
+	left: 140px;
+	text-align: right;
+}
+.fCenter div:nth-of-type(4) span,.fCenter div:nth-of-type(4) dl{
+	float: right;
+	margin-left: 10px;
+}
+.fCenter div:nth-of-type(4) dl{
+}

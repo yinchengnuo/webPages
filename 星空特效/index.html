@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body{
+            background-color: #000;
+        }
+
+        span{
+            width: 30px;
+            height: 30px;
+            background: url("images/star.png") no-repeat;
+            position: absolute;
+            background-size:100% 100%;
+            animation: flash 1s alternate infinite;
+        }
+        
+        @keyframes flash {
+            0%{opacity: 0;}
+            100%{opacity: 1;}
+        }
+
+        span:hover{
+            transform: scale(3, 3) rotate(180deg) !important;
+            transition: all 1s;
+        }
+        #wrapper {
+            position:absolute;
+            top:50px;
+            left:80%;
+            width:200px;
+            height:200px;
+            margin-left:-100px;
+            animation: moonline 30s linear;
+            z-index:9999999999999999;
+        }
+        @-webkit-keyframes moonline {
+            0% {top:250px;left:0%;opacity:0;}
+            30% {top:150px;left:40%;opacity:0.5;}
+            80% {top:50px;left:80%;opacity:1;}
+        }
+        #circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-color: #EFEFEF;
+            box-shadow:0 0 40px #FFFFFF;
+            border-radius: 100px;
+            animation:moonright 30s linear;
+        
+        }
+        @-webkit-keyframes moonright {
+            0% {-webkit-box-shadow:0 0 10px #FFFFFF;}
+            30% {-webkit-box-shadow:0 0 15px #FFFFFF;}
+            40% {-webkit-box-shadow:0 0 20px #FFFFFF;}
+            50% {-webkit-box-shadow:0 0 25px #FFFFFF;}
+            100% {-webkit-box-shadow:0 0 30px #FFFFFF;}
+        }
+
+    </style>
+</head>
+<body>
+        <div id="wrapper">
+                <div id="circle"></div>
+                <div id="circle1"></div>
+              </div>
+<span></span>
+<script>
+    window.onload = function () {
+        // 屏幕的尺寸
+        var screenW = document.documentElement.clientWidth;
+        var screenH = document.documentElement.clientHeight;
+
+        // 2. 动态创建多个星星
+        for(var i=0; i<150; i++){
+            var span = document.createElement('span');
+            document.body.appendChild(span);
+
+            //位置随机
+            var x = parseInt(Math.random() * screenW);
+            var y = parseInt(Math.random() * screenH);
+            span.style.left = x + 'px';
+            span.style.top = y + 'px';
+            span.style.zIndex = "0";
+
+            //大小随机
+            var scale = Math.random() * 1.5;
+            span.style.transform = 'scale('+ scale + ', ' + scale + ')';
+
+            //频率随机
+            var rate = Math.random() * 1.5;
+            span.style.animationDelay = rate + 's';
+        }
+    }
+</script>
+</body>
+</html>

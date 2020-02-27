@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片折叠</title>
+    <link rel="stylesheet" href="demo.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="cards-stack">
+            <li class="stack stack1">
+                <ul>
+                    <li class="card card1">
+                        <img src="./img/01.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                    <li class="card card2">
+                        <img src="./img/02.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                    <li class="card card3">
+                        <img src="./img/03.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                </ul>
+            </li>
+            <li class="stack stack2">
+                <ul>
+                    <li class="card card1">
+                        <img src="./img/04.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                    <li class="card card2">
+                        <img src="./img/05.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                    <li class="card card3">
+                        <img src="./img/06.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                </ul>
+            </li>
+            <li class="stack stack3">
+                <ul>
+                    <li class="card card1">
+                        <img src="./img/07.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                    <li class="card card2">
+                        <img src="./img/08.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                    <li class="card card3">
+                        <img src="./img/01.jpg" alt="">
+                        <div class="con">pictures</div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="jquery.js"></script>
+    <script>
+        $('.cards-stack').on('click',function(){
+            $(this).toggleClass('transition')
+        })
+    </script>
+</body>
+
+</html>
